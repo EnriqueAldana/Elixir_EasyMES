@@ -1,0 +1,37 @@
+<h2>Listing roles</h2>
+<table class="table">
+<td>
+<%= link "New role", to: role_path(@conn, :new) %>
+
+</td>
+<td>
+  <%= link "Back home", to: page_path(@conn, :home) %>
+</td>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Role id</th>
+      <th>Key role</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for role <- @roles do %>
+    <tr>
+      <td><%= role.id %></td>
+      <td><%= role.key_role %></td>
+      <td><%= role.description %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: role_path(@conn, :show, role), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: role_path(@conn, :edit, role), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: role_path(@conn, :delete, role), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<%= link "New role", to: role_path(@conn, :new) %>

@@ -1,0 +1,18 @@
+<h2>Show role  right</h2>
+
+<ul>
+
+  <li>
+    <strong>Role:</strong>
+    <%= @role__right.role_id %>
+  </li>
+
+  <li>
+    <strong>Right:</strong>
+    <%= @role__right.right_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: role__right_path(@conn, :edit, @role__right) %>
+<%= link "Back", to: role__right_path(@conn, :index) %>

@@ -1,0 +1,18 @@
+<h2>Show module</h2>
+
+<ul>
+
+  <li>
+    <strong>Module name:</strong>
+    <%= @module.module_name %>
+  </li>
+
+  <li>
+    <strong>Module description:</strong>
+    <%= @module.module_description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: module_path(@conn, :edit, @module) %>
+<%= link "Back", to: module_path(@conn, :index) %>

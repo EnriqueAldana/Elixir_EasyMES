@@ -1,0 +1,40 @@
+<h2>Listing users</h2>
+<table class="table">
+<td>
+<%= link "New user", to: user_path(@conn, :new) %>
+
+</td>
+<td>
+  <%= link "Back home", to: page_path(@conn, :home) %>
+</td>
+
+</table>
+<table class="table">
+  <thead>
+    <tr>
+      <th>User Id</th>
+      <th>User name</th>
+      <th>First name</th>
+      <th>Last name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.user_name %></td>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
+
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<%= link "New user", to: user_path(@conn, :new) %>

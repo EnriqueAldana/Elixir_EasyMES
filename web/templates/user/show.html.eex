@@ -1,0 +1,167 @@
+<!-- # web/templates/user/show.html.eex -->
+<h2>Show user</h2>
+<table class="table">
+<td>
+<%= link "Edit", to: user_path(@conn, :edit, @user) %>
+
+</td>
+<td>
+  <%= link "Back", to: user_path(@conn, :index) %>
+</td>
+</table>
+
+<ul>
+
+  <li>
+    <strong>User Id :</strong>
+     <%= @user.id %>
+  </li>
+  <li>
+    <strong>User name :</strong>
+     <%= @user.user_name %>
+  </li>
+
+  <li>
+    <strong>First name :</strong>
+    <%= @user.first_name %>
+  </li>
+
+  <li>
+    <strong>Last name :</strong>
+     <%= @user.last_name %>
+  </li>
+  <li>
+
+  <strong>Is admin  :</strong>
+  <%= @user.is_admin %>
+  <li>
+  <strong>Encrypted Password :</strong>
+  <%= @user.encrypted_password %>
+
+  <li>
+  <strong> Email :</strong>
+  <%= @user.email %>
+
+  <li>
+  <strong> Confirmed :</strong>
+  <%= @user.confirmed %>
+
+  <li>
+  <strong> Created at :</strong>
+  <%= @user.created_at %>
+
+  <li>
+  <strong> Updated at :</strong>
+  <%= @user.updated_at %>
+
+  <li>
+  <strong> Phone :</strong>
+  <%= @user.phone %>
+
+  <li>
+  <strong> Cell phone :</strong>
+  <%= @user.mobil_phone %>
+
+  <li>
+  <strong> Birth Day :</strong>
+  <%= @user.birth_day %>
+
+  <li>
+  <strong> Home phone :</strong>
+  <%= @user.home_phone %>
+
+  <li>
+  <strong> Work phone :</strong>
+  <%= @user.work_phone %>
+
+  <li>
+  <strong> Personal titule :</strong>
+  <%= @user.personal_titule %>
+
+  <li>
+  <strong> Job Titule :</strong>
+  <%= @user.job_title %>
+
+  <li>
+  <strong> Employee number :</strong>
+  <%= @user.employee_num %>
+
+  <li>
+  <strong> Work type :</strong>
+  <%= @user.work_type %>
+
+  <li>
+  <strong> Work Category :</strong>
+  <%= @user.work_category %>
+
+  <li>
+  <strong> Work Sub Category :</strong>
+   <%= @user.work_sub_category %>
+
+  <li>
+  <strong> Work vendor :</strong>
+  <%= @user.work_vendor %>
+
+  <li>
+  <strong> Deparment :</strong>
+  <%= @user.department %>
+
+  <li>
+  <strong> Sub department :</strong>
+  <%= @user.sub_department %>
+
+  <li>
+  <strong> Division :</strong>
+  <%= @user.division %>
+
+  <li>
+  <strong> Assistant :</strong>
+  <%= @user.assistant %>
+
+  <li>
+  <strong> Manager :</strong>
+  <%= @user.manager %>
+
+  <li>
+  <strong> Cost Center :</strong>
+  <%= @user.cost_center %>
+
+  <li>
+  <strong> Location :</strong>
+  <%= @user.location %>
+
+  <li>
+  <strong> Building :</strong>
+  <%= @user.building %>
+
+  <li>
+  <strong> Floor :</strong>
+  <%= @user.floor %>
+
+  <li>
+  <strong> Seat number :</strong>
+  <%= @user.seat_numbers %>
+
+  <li>
+  <strong> City :</strong>
+  <%=  @user.city %>
+
+  <li>
+  <strong> Postal Code :</strong>
+  <%= @user.postal_code %>
+
+  <li>
+  <strong> State :</strong>
+  <%= @user.state %>
+
+  <li>
+  <strong> Country :</strong>
+  <%= @user.country %>
+
+  <li>
+  <strong> Region :</strong>
+  <%= @user.region %>
+
+  <li>
+  <strong> Session  :</strong>
+  <%=  @current_user.id %>

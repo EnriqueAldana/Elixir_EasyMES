@@ -1,0 +1,23 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+        <%= get_err(@changeset) %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :module_name, class: "control-label" %>
+    <%= text_input f, :module_name, class: "form-control" %>
+    <%= error_tag f, :module_name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :module_description, class: "control-label" %>
+    <%= textarea f, :module_description, class: "form-control" %>
+    <%= error_tag f, :module_description %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

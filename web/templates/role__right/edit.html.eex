@@ -1,0 +1,6 @@
+<h2>Edit role  right</h2>
+
+<%= render "form.html", changeset: @changeset, roles: @roles, rights: @rights,
+                        action: role__right_path(@conn, :update, @role__right) %>
+
+<%= link "Back", to: role__right_path(@conn, :index) %>

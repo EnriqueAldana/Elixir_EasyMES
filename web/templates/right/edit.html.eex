@@ -1,0 +1,6 @@
+<h2>Edit right</h2>
+
+<%= render "form.html", changeset: @changeset, actions: @actions,modules: @modules,
+                        action: right_path(@conn, :update, @right) %>
+
+<%= link "Back", to: right_path(@conn, :index) %>

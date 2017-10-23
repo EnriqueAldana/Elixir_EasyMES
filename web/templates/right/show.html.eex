@@ -1,0 +1,26 @@
+<h2>Show right</h2>
+
+<ul>
+  <li>
+    <strong>Right id:</strong>
+    <%= @right.id %>
+  </li>
+  <li>
+    <strong>Module name:</strong>
+    <%= @right.module_name %>
+  </li>
+
+  <li>
+    <strong>Action name:</strong>
+    <%= @right.action_name %>
+  </li>
+
+  <li>
+    <strong>Right string:</strong>
+    <%= @right.right_string %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: right_path(@conn, :edit, @right) %>
+<%= link "Back", to: right_path(@conn, :index) %>

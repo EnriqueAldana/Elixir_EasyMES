@@ -1,0 +1,18 @@
+<h2>Show action</h2>
+
+<ul>
+
+  <li>
+    <strong>Action name:</strong>
+    <%= @action.action_name %>
+  </li>
+
+  <li>
+    <strong>Action description:</strong>
+    <%= @action.action_description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: action_path(@conn, :edit, @action) %>
+<%= link "Back", to: action_path(@conn, :index) %>

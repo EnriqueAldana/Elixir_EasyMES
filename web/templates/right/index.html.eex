@@ -1,0 +1,40 @@
+<h2>Listing rights</h2>
+<table class="table">
+<td>
+<%= link "New right", to: right_path(@conn, :new) %>
+
+</td>
+<td>
+  <%= link "Back home", to: page_path(@conn, :home) %>
+</td>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Right Id</th>
+      <th>Module name</th>
+      <th>Action name</th>
+      <th>Right string</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for right <- @rights do %>
+    <tr>
+      <td><%= right.id %></td>
+      <td><%= right.module_name %></td>
+      <td><%= right.action_name %></td>
+      <td><%= right.right_string %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: right_path(@conn, :show, right), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: right_path(@conn, :edit, right), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: right_path(@conn, :delete, right), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New right", to: right_path(@conn, :new) %>
