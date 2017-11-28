@@ -15,7 +15,7 @@ The requirement is:
 * (3)	Database with low latency – Native Erlang database.
 
 Screenshots
-
+<br>
 Welcoem Page
 ![](https://github.com/EnriqueAldana/Elixir_EasyMES/blob/master/priv/static/images/EasyMES_Welcome_page.png)
 <br>
