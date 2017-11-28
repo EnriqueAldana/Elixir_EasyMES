@@ -14,6 +14,28 @@ The requirement is:
 * (2)	Encrypted Security access and session implementation 
 * (3)	Database with low latency – Native Erlang database.
 
+Screenshots
+
+Welcoem Page
+![](https://github.com/EnriqueAldana/Elixir_EasyMES/blob/master/priv/static/images/EasyMES_Welcome_page.png)
+<br>
+Login page
+![](https://github.com/EnriqueAldana/Elixir_EasyMES/blob/master/priv/static/images/EasyMES_Login_page.png)
+<br>
+Main page
+![](https://github.com/EnriqueAldana/Elixir_EasyMES/blob/master/priv/static/images/EasyMES_Main_page.png)
+<br>
+User catalog page
+![](https://github.com/EnriqueAldana/Elixir_EasyMES/blob/master/priv/static/images/EasyMES_User_Catalog.png)
+<br>
+Right catalog page
+![](https://github.com/EnriqueAldana/Elixir_EasyMES/blob/master/priv/static/images/EasyMES_Right_Catalog.png)
+<br>
+Module catalog page
+![](https://github.com/EnriqueAldana/Elixir_EasyMES/blob/master/priv/static/images/EasyMES_Module_Catalog.png)
+<br>
+Action catalog page
+![](https://github.com/EnriqueAldana/Elixir_EasyMES/blob/master/priv/static/images/EasyMES_Action_Catalog.png)
 
 
 
