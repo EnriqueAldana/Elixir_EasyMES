@@ -1,5 +1,5 @@
 defmodule MesPhoenix.ModuleTest do
-  use MesPhoenix.ModelCase
+  use ExUnit.Case
 
   alias MesPhoenix.Module
 

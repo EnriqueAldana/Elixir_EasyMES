@@ -1,5 +1,5 @@
 defmodule MesPhoenix.PostTest do
-  use MesPhoenix.ModelCase
+  use ExUnit.Case
 
   alias MesPhoenix.Post
 

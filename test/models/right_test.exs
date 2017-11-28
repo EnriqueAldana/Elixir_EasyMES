@@ -1,5 +1,5 @@
 defmodule MesPhoenix.RightTest do
-  use MesPhoenix.ModelCase
+  use ExUnit.Case
 
   alias MesPhoenix.Right
 

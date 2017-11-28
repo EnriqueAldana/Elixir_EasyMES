@@ -1,5 +1,5 @@
 defmodule MesPhoenix.ActionTest do
-  use MesPhoenix.ModelCase
+  use ExUnit.Case
 
   alias MesPhoenix.Action
 

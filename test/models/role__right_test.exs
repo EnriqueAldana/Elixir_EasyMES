@@ -1,5 +1,5 @@
 defmodule MesPhoenix.Role_RightTest do
-  use MesPhoenix.ModelCase
+  use ExUnit.Case
 
   alias MesPhoenix.Role_Right
 
