@@ -16,7 +16,8 @@ The requirement is:
 
 Screenshots
 <br>
-Welcoem Page
+Welcome Page
+<br>
 ![](https://github.com/EnriqueAldana/Elixir_EasyMES/blob/master/priv/static/images/EasyMES_Welcome_page.png)
 <br>
 Login page
