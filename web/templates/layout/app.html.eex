@@ -8,6 +8,9 @@
     <meta name="author" content="">
 
     <title><%= title() %></title>
+    <link rel="stylesheet" href=<%= static_path(@conn, "/css/bootstrap.min.css") %>">
+    <script src="<%= static_path(@conn, "/js/jquery.min.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/bootstrap.min.js") %>"></script>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 
 </header>
@@ -45,5 +48,6 @@
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
   </body>
 </html>
