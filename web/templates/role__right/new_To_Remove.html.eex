@@ -1,0 +1,6 @@
+<h2>Assigning rights </h2>
+
+<%= render "form.html", role: @role,  rights: @rights , changeset: @changeset,
+  action: role__right_path(@conn, :update) %>
+
+<%= link "Back", to: role__right_path(@conn, :index) %>

@@ -1,24 +1,39 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
+<%= form_for @changeset, @action,fn f  -> %>
+<%= if @changeset.action do %>
+  <div class="alert alert-danger">
   <%= get_err(@changeset) %>  </div>
+<% end %>
+<%= if @role do %>
+<div class="well"> The role called as
+  <%= label f, :key_role, @role.key_role, class: "control-label" %>
+  has assigned the rights :
+  <%= for right_value <- @role.rights do %>
+    <%= right_value.right_string %>
+      <% end %>
+</div>
+<%= end %>
+  <%= if @rights do %>
+
+  <table class="table">
+  <tr>
+    <td>Right list to be assigned</td>
+  </tr>
+  <tr>
+    <td><%= label f, "Mutiple select list (hold shift to select more than one)", class: "control-label" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="form-group">
+        <%= multiple_select(f, :rights_assigned, @rights, selected: [1],class: "form-control") %>
+      </div>
+    </td>
+  </tr>
+  
+  </table>
+
 
   <% end %>
-
-  <div class="form-group">
-    <%= label f, :key_role, "Role name", class: "control-label" %>
-    <%= select f, :id_role, @roles, class: "form-control",
-    prompt: "Choose an right" %>
-      <%= error_tag f, :id_role %>
-  </div>
-  <div class="form-group">
-    <%= label f, :right_string, "Right name", class: "control-label" %>
-    <%= select f, :id_right, @rights, class: "form-control",
-    prompt: "Choose an role" %>
-      <%= error_tag f, :id_right %>
-  </div>
-
-
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>

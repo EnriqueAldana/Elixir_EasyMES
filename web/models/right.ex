@@ -9,7 +9,8 @@ defmodule MesPhoenix.Right do
     field :module_name, :string
     field :action_name, :string
     field :right_string, :string
-  
+    many_to_many :roles, MesPhoenix.Role, join_through: "roles_rights"
+
     timestamps()
   end
 
@@ -43,5 +44,12 @@ defmodule MesPhoenix.Right do
   end
   def names_and_ids(query) do
     from c in query, select: {c.right_string, c.id}
+  end
+  def by_ids(query,ids) when is_nil(ids) or byte_size(ids) == 0 do
+    query
+  end
+  def by_ids(query,ids) do
+    from right in query,
+    where: right.id in ^ids
   end
 end

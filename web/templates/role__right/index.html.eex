@@ -1,28 +1,47 @@
-<h2>Listing role rights</h2>
-
+<h2>Listing roles and rights</h2>
+<td>
+<%= link "New role", to: role_path(@conn, :new) %>
+</td>
+<td>
+<%= link "New right", to: right_path(@conn, :new) %>
+</td>
+<td>
+</td>
+<td>
+  <%= link "Back home", to: page_path(@conn, :home) %>
+</td>
 <table class="table">
   <thead>
     <tr>
-      <th>Role</th>
-      <th>Right</th>
+      <th>Role Key</th>
+      <th>Role Description</th>
 
-      <th></th>
+      <th>Rights associated</th>
     </tr>
   </thead>
   <tbody>
 <%= for role__right <- @role_rights do %>
     <tr>
-      <td><%= role__right.role_id %></td>
-      <td><%= role__right.right_id %></td>
+      <td><%= role__right.key_role %></td>
+      <td><%= role__right.description %></td>
+      <td><%= for right_value <- role__right.rights do %>
+        <%= right_value.right_string %>
+
+          <% end %>
+      </td>
 
       <td class="text-right">
-        <%= link "Show", to: role__right_path(@conn, :show, role__right), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: role__right_path(@conn, :edit, role__right), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: role__right_path(@conn, :delete, role__right), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
+        <%= link "Add right", to: role__right_path(@conn, :edit, role__right), class: "btn btn-default btn-xs" %>
+        </td>
     </tr>
 <% end %>
   </tbody>
 </table>
-
-<%= link "New role  right", to: role__right_path(@conn, :new) %>
+<td>
+<%= link "New role", to: role_path(@conn, :new) %>
+</td>
+<td>
+<%= link "New right", to: right_path(@conn, :new) %>
+</td>
+<td>
+</td>

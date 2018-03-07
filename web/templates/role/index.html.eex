@@ -1,8 +1,8 @@
 <h2>Listing roles</h2>
+
 <table class="table">
 <td>
 <%= link "New role", to: role_path(@conn, :new) %>
-
 </td>
 <td>
   <%= link "Back home", to: page_path(@conn, :home) %>
