@@ -1,5 +1,7 @@
 defmodule MesPhoenix.RightController do
   use MesPhoenix.Web, :controller
+  plug :authenticate_user when action in [:index, :new,:create,:show,:edit,:update, :delete]
+  plug :authorization_user when action in [:index, :new,:create,:show,:edit,:update, :delete]
 
   alias MesPhoenix.Right
   alias MesPhoenix.Action
@@ -41,7 +43,18 @@ defmodule MesPhoenix.RightController do
   end
 
   def create(conn, %{"right" => right_params}) do
-    changeset = Right.registration_changeset(%Right{}, right_params)
+
+    module_id= right_params["module_id"]
+    action_id= right_params["action_id"]
+    IO.puts module_id
+    module = Repo.get!(Module, module_id)
+    IO.puts module.module_name
+    action = Repo.get!(Action, action_id)
+    right_params1= Map.put(right_params,"module_name",module.module_name)
+    right_params2= Map.put(right_params1,"action_name",action.action_name)
+
+    IO.inspect right_params2
+    changeset = Right.registration_changeset(%Right{}, right_params2)
 
     case Repo.insert(changeset) do
       {:ok, _right} ->
@@ -81,7 +94,21 @@ defmodule MesPhoenix.RightController do
   def delete(conn, %{"id" => id}) do
     right = Repo.get!(Right, id)
 
-    # Here we use delete! (with a bang) because we expect
+    # roles_rights_right_id_fkey
+    changeset = Right.changeset_delete(right)
+    case Repo.delete(changeset) do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Right deleted successfully.")
+        |> redirect(to: right_path(conn, :index))
+      {:error, _} ->
+        conn
+        |> put_flash(:error, "Right has not been deleted. The right  with right_string named as #{right.right_string} has a role associated. ")
+        |> redirect(to: right_path(conn, :index))
+    end
+
+
+
     # it to always work (and if it does not, it will raise).
     Repo.delete!(right)
 

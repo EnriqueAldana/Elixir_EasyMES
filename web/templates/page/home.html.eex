@@ -4,7 +4,7 @@
 <ul class="dropdown-menu">
   <li><a href="<%= user_path(@conn, :index) %>">Users List</a></li>
   <li><a href="<%= role_path(@conn, :index) %>">Roles List</a></li>
-  <li><a href="#">Users and Roles List</a></li>
+  <li><a href="<%= user__role_path(@conn, :index ) %>">Users and Roles List</a></li>
   <li><a href="<%= role__right_path(@conn, :index) %>">Roles and Rights List</a></li>
   <li><a href="<%= right_path(@conn, :index) %>">Rights List</a></li>
   <li><a href="<%= module_path(@conn, :index) %>">Modules List</a></li>

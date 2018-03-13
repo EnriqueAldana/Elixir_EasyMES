@@ -1,0 +1,38 @@
+<%= form_for @changeset, @action,fn f  -> %>
+<%= if @changeset.action do %>
+  <div class="alert alert-danger">
+  <%= get_err(@changeset) %>  </div>
+<% end %>
+<%= if @user do %>
+<div class="well"> The user called as
+  <%= label f, :user_name, @user.user_name, class: "control-label" %>
+  has assigned the roles :
+  <%= for role_value <- @user.roles do %>
+    <%= role_value.key_role %>
+    <% end %>
+</div>
+<% end %>
+  <%= if @roles do %>
+
+  <table class="table">
+  <tr>
+    <td>Role list to be assigned</td>
+  </tr>
+  <tr>
+    <td><%= label f, "Mutiple select list (hold shift to select more than one)", class: "control-label" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="form-group">
+        <%= multiple_select(f, :roles_assigned, @roles, selected: [1],class: "form-control") %>
+      </div>
+    </td>
+  </tr>
+
+  </table>
+  <% end %>
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

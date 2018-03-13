@@ -5,6 +5,9 @@ defmodule MesPhoenix.Role_RightController do
   alias MesPhoenix.Right
   require Logger
 
+  plug :authenticate_user when action in [:index, :edit,:update]
+  plug :authorization_user when action in [:index, :edit,:update]
+
   plug :load_rights when action in [:edit]
 
   defp load_rights(conn, _) do

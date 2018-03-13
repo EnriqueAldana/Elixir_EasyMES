@@ -58,7 +58,7 @@ defmodule Mes_phoenixMySQL.Repo.Migrations.InicialMySQL do
       add :created_at, :naive_datetime, default: fragment("now()") , comment: "This field is updated automaticaly "
       add :updated_at, :naive_datetime
     end
-    create unique_index(:users, [:email])
+    create_if_not_exists unique_index(:users, [:email])
   end
   # where down/0 rolls back the prompted changes.
   # mix ecto.rollback

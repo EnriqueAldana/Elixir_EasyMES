@@ -2,6 +2,8 @@ defmodule MesPhoenix.ActionController do
   use MesPhoenix.Web, :controller
 
   alias MesPhoenix.Action
+  plug :authenticate_user when action in [:index, :new,:create,:show,:edit,:update, :delete]
+  plug :authorization_user when action in [:index, :new,:create,:show,:edit,:update, :delete]
 
   def index(conn, _params) do
     actions = Repo.all(Action)
@@ -14,6 +16,7 @@ defmodule MesPhoenix.ActionController do
   end
 
   def create(conn, %{"action" => action_params}) do
+    #IO.puts action_params
     changeset = Action.changeset(%Action{}, action_params)
 
     case Repo.insert(changeset) do
@@ -53,13 +56,16 @@ defmodule MesPhoenix.ActionController do
 
   def delete(conn, %{"id" => id}) do
     action = Repo.get!(Action, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(action)
-
-    conn
-    |> put_flash(:info, "Action deleted successfully.")
-    |> redirect(to: action_path(conn, :index))
+    changeset = Action.changeset_delete(action)
+    case Repo.delete(changeset) do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Action deleted successfully.")
+        |> redirect(to: action_path(conn, :index))
+      {:error, _} ->
+        conn
+        |> put_flash(:error, "Action has not been deleted. The action with key named as #{action.action_name} has a right associated. ")
+        |> redirect(to: action_path(conn, :index))
+    end
   end
 end

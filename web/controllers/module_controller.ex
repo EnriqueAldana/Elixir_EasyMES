@@ -2,6 +2,8 @@ defmodule MesPhoenix.ModuleController do
   use MesPhoenix.Web, :controller
 
   alias MesPhoenix.Module
+  plug :authenticate_user when action in [:index, :new,:create,:show,:edit,:update, :delete]
+  plug :authorization_user when action in [:index, :new,:create,:show,:edit,:update, :delete]
 
   def index(conn, _params) do
     modules = Repo.all(Module)
@@ -53,13 +55,16 @@ defmodule MesPhoenix.ModuleController do
 
   def delete(conn, %{"id" => id}) do
     module = Repo.get!(Module, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(module)
-
-    conn
-    |> put_flash(:info, "Module deleted successfully.")
-    |> redirect(to: module_path(conn, :index))
+    changeset = Module.changeset_delete(module)
+    case Repo.delete(changeset) do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Module deleted successfully.")
+        |> redirect(to: module_path(conn, :index))
+      {:error, _} ->
+        conn
+        |> put_flash(:error, "Module has not been deleted. The module with key named as #{module.module_name} has a right associated. ")
+        |> redirect(to: module_path(conn, :index))
+    end
   end
 end

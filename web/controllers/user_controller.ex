@@ -2,9 +2,9 @@
 
 defmodule MesPhoenix.UserController do
   use MesPhoenix.Web, :controller
-plug :authenticate_user when action in [:index, :show, :new,:update,:edit]
 #plug :fallbackcontroller when action in [:index, :show, :new,:update,:edit]
 #plug :authorization_user,[mod_name: :UserController, act_name: [:index, :show, :new,:create, :update,:edit]] when action in [:index, :show, :new,:update,:edit]
+plug :authenticate_user when action in [:index, :show, :new,:update,:edit]
 plug :authorization_user when action in [:index, :show, :new,:create,:update,:edit]
 
 plug :scrub_params, "user" when action in [:create]
@@ -14,20 +14,17 @@ alias MesPhoenix.Console
 require Logger
 
   def index(conn, _params) do
-    user = conn.assigns.current_user
     users= Mes_phoenix.Repo.all(User)
     render conn, "index.html", users: users
 
   end
 
   def show(conn, %{"id" => id}) do
-    user = conn.assigns.current_user
-      user = Mes_phoenix.Repo.get_by(User, id: id)
+        user = Mes_phoenix.Repo.get_by(User, id: id)
         render(conn, "show.html", user: user)
   end
 
   def new(conn, _params) do
-    user = conn.assigns.current_user
     changeset = User.changeset(%User{})
     render conn, "new.html", changeset: changeset
   end
@@ -41,7 +38,7 @@ require Logger
                 {:ok, model} ->
                 conn
                 |> put_flash(:info, "#{model.user_name} created!")
-                |> redirect(to: user_path(conn, :index, model))
+                |> redirect(to: user_path(conn, :index))
                 {:error, changeset} ->
                     render(conn, "new.html", changeset: changeset)
                 #{:unique_constraint_user_name_email_index,changeset} ->

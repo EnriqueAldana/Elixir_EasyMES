@@ -1,0 +1,6 @@
+<h2>Adding or removing roles to the user</h2>
+
+<%= render "form.html", changeset: @changeset, user: @user, roles: @roles,
+                        action: user__role_path(@conn, :update, @user) %>
+
+<%= link "Back", to: role__right_path(@conn, :index) %>

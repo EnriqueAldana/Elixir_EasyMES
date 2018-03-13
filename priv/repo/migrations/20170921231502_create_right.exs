@@ -9,7 +9,7 @@ defmodule MesPhoenix.Repo.Migrations.CreateRight do
 
       timestamps()
     end
-create unique_index(:rights,[:right_string])
+create_if_not_exists unique_index(:rights,[:right_string])
   end
 
   def down do

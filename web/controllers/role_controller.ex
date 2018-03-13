@@ -1,6 +1,7 @@
 defmodule MesPhoenix.RoleController do
   use MesPhoenix.Web, :controller
-  plug :authenticate_user when action in [:index, :show, :new, :edit,:update,:delete]
+  plug :authenticate_user when action in [:index, :new,:create,:show,:edit,:update, :delete]
+  plug :authorization_user when action in [:index, :new,:create,:show,:edit,:update, :delete]
   plug :scrub_params, "role" when action in [:create]
   plug :load_rights when action in [:new, :create, :edit, :update]
 
@@ -80,8 +81,8 @@ require Logger
         |> redirect(to: role_path(conn, :index))
       {:error, _} ->
         conn
-        |> put_flash(:error, "Role has not been deleted. The role with key named as #{role.key_role} has a right associated. ")
-        |> redirect(to: role_path(conn, :index))
+        |> put_flash(:error, "Role has not been deleted. The role with key named as #{role.key_role} has a right or user associated. ")
+        |> redirect(to: role_path(conn, :index), changeset: changeset)
     end
 
 

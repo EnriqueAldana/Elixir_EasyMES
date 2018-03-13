@@ -3,6 +3,9 @@ import Plug.Conn
 import Phoenix.Controller
 alias MesPhoenix.Console
 alias MesPhoenix.Uri
+alias MesPhoenix.Utility
+alias MesPhoenix.Role
+alias Mes_phoenix.Repo
 # This Console function is our located on utilities folder
 #Console.write_line("The end of User create - Insert record on Users table!")
 
@@ -47,10 +50,14 @@ def authorization_user(conn, opts) do
   Logger.debug "ctl_name is #{ctl_name}"
   array_ctl_name = String.split(inspect(ctl_name), ".")
   Logger.debug "array_ctl_name #{array_ctl_name}"
-  [_,controller_name]= array_ctl_name
+  [_,controller_name_complete]= array_ctl_name
+  controller_name = String.slice(controller_name_complete, 0..-11)
   action_name= conn.private[:phoenix_action]
   is_admin= conn.assigns.current_user.is_admin
-  rights_string= conn.assigns.rights_user
+  rights_string= get_session(conn, :rights_user)
+  Logger.debug "rights_string value: #{inspect(rights_string)}"
+
+    #conn.assigns.rights_user
   Logger.debug "Is the User admin ? #{is_admin}"
   Logger.debug "Controller name is #{controller_name}"
   Logger.debug "Action name is #{action_name}"
@@ -103,19 +110,29 @@ end
     # We are storing the user object on :current_user atom on session
     # that is conn.assign.current_user
     # and it is available on all views
-    rights_string= "UserController_ UserController_index UserController_update UserController_new"
     conn
-    |> assign(:rights_user, rights_string)
     |> assign(:current_user, user)
 
   end
+  defp load_user_rights(id) do
+    query =
+    Role
+    |> Role.get_rights_by_user(id)
+    Repo.all query
 
+  end
   def login(conn, user) do
     Logger.debug "Entrance into login. Put User Id on session and current_user on assign"
+    rights_user = load_user_rights(user.id)
+    rights_string = Utility.list_to_string_separated_by_space(rights_user,"")
+      #{}"UserController_ UserController_index UserController_update UserController_new"
+    Logger.debug "rights_user value #{rights_string}"
     conn
+    |> configure_session(renew: true)
+    |> put_session(:rights_user, rights_string)
     |> assign(:current_user, user)
     |> put_session(:user_id, user.id)
-    |> configure_session(renew: true)
+
   end
 
   def logout(conn) do

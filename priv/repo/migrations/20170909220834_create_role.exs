@@ -8,7 +8,7 @@ defmodule MesPhoenix.Repo.Migrations.CreateRole do
 
       timestamps()
     end
-    create unique_index(:roles,[:key_role])
+    create_if_not_exists unique_index(:roles,[:key_role])
   end
 
   def down do

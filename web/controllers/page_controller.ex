@@ -1,14 +1,16 @@
 defmodule MesPhoenix.PageController do
   use MesPhoenix.Web, :controller
-  plug :authenticate_user when action in [:home, :no_right]
+#  plug :authenticate_user when action in [:home, :no_right]
 alias MesPhoenix.Console
 
 require Logger
-# Logger.info  "Logging this text!"
-# Logger.debug "Var value: #{inspect(var)}"
+
 @send_to "/"
 
   def index(conn, _params) do
+    user = User
+    conn
+    |> assign(:current_user, user)
     render conn, "index.html"
   end
   def home(conn, _params) do

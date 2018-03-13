@@ -1,0 +1,49 @@
+<h2>Listing users and roles</h2>
+<table class="table">
+<td>
+<%= link "New user", to: user_path(@conn, :new) %>
+</td>
+<td>
+<%= link "New role", to: role_path(@conn, :new) %>
+</td>
+<td>
+</td>
+<td>
+  <%= link "Back home", to: page_path(@conn, :home) %>
+</td>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User name</th>
+      <th>User email</th>
+
+      <th>Roles associated</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user__role <- @users_roles do %>
+    <tr>
+      <td><%= user__role.user_name %></td>
+      <td><%= user__role.email %></td>
+      <td><%= for user_value <- user__role.roles do %>
+            <%= user_value.key_role %>
+          <% end %>
+      </td>
+
+      <td class="text-right">
+        <%= link "Add role", to: user__role_path(@conn, :edit, user__role), class: "btn btn-default btn-xs" %>
+        </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<td>
+<%= link "New user", to: user_path(@conn, :new) %>
+</td>
+<td>
+<%= link "New role", to: role_path(@conn, :new) %>
+</td>
+<td>
+</td>

@@ -1,0 +1,65 @@
+Compiling 1 file (.ex)
+       page_path  GET     /                      MesPhoenix.PageController :index
+       page_path  GET     /home                  MesPhoenix.PageController :home
+       page_path  GET     /no_right              MesPhoenix.PageController :no_right
+       home_path  GET     /homes                 MesPhoenix.HomeController :index
+       user_path  GET     /users                 MesPhoenix.UserController :index
+       user_path  GET     /users/:id/edit        MesPhoenix.UserController :edit
+       user_path  GET     /users/new             MesPhoenix.UserController :new
+       user_path  GET     /users/:id             MesPhoenix.UserController :show
+       user_path  POST    /users                 MesPhoenix.UserController :create
+       user_path  PATCH   /users/:id             MesPhoenix.UserController :update
+                  PUT     /users/:id             MesPhoenix.UserController :update
+    session_path  GET     /sessions/new          MesPhoenix.SessionController :new
+    session_path  POST    /sessions              MesPhoenix.SessionController :create
+    session_path  DELETE  /sessions/:id          MesPhoenix.SessionController :delete
+       role_path  GET     /roles                 MesPhoenix.RoleController :index
+       role_path  GET     /roles/:id/edit        MesPhoenix.RoleController :edit
+       role_path  GET     /roles/new             MesPhoenix.RoleController :new
+       role_path  GET     /roles/:id             MesPhoenix.RoleController :show
+       role_path  POST    /roles                 MesPhoenix.RoleController :create
+       role_path  PATCH   /roles/:id             MesPhoenix.RoleController :update
+                  PUT     /roles/:id             MesPhoenix.RoleController :update
+       role_path  DELETE  /roles/:id             MesPhoenix.RoleController :delete
+ user__role_path  GET     /user_roles            MesPhoenix.User_RoleController :index
+ user__role_path  GET     /user_roles/:id/edit   MesPhoenix.User_RoleController :edit
+ user__role_path  GET     /user_roles/new        MesPhoenix.User_RoleController :new
+ user__role_path  GET     /user_roles/:id        MesPhoenix.User_RoleController :show
+ user__role_path  POST    /user_roles            MesPhoenix.User_RoleController :create
+ user__role_path  PATCH   /user_roles/:id        MesPhoenix.User_RoleController :update
+                  PUT     /user_roles/:id        MesPhoenix.User_RoleController :update
+ user__role_path  DELETE  /user_roles/:id        MesPhoenix.User_RoleController :delete
+      right_path  GET     /rights                MesPhoenix.RightController :index
+      right_path  GET     /rights/:id/edit       MesPhoenix.RightController :edit
+      right_path  GET     /rights/new            MesPhoenix.RightController :new
+      right_path  GET     /rights/:id            MesPhoenix.RightController :show
+      right_path  POST    /rights                MesPhoenix.RightController :create
+      right_path  PATCH   /rights/:id            MesPhoenix.RightController :update
+                  PUT     /rights/:id            MesPhoenix.RightController :update
+      right_path  DELETE  /rights/:id            MesPhoenix.RightController :delete
+role__right_path  GET     /role_rights           MesPhoenix.Role_RightController :index
+role__right_path  GET     /role_rights/:id/edit  MesPhoenix.Role_RightController :edit
+role__right_path  GET     /role_rights/new       MesPhoenix.Role_RightController :new
+role__right_path  GET     /role_rights/:id       MesPhoenix.Role_RightController :show
+role__right_path  POST    /role_rights           MesPhoenix.Role_RightController :create
+role__right_path  PATCH   /role_rights/:id       MesPhoenix.Role_RightController :update
+                  PUT     /role_rights/:id       MesPhoenix.Role_RightController :update
+role__right_path  DELETE  /role_rights/:id       MesPhoenix.Role_RightController :delete
+     action_path  GET     /actions               MesPhoenix.ActionController :index
+     action_path  GET     /actions/:id/edit      MesPhoenix.ActionController :edit
+     action_path  GET     /actions/new           MesPhoenix.ActionController :new
+     action_path  GET     /actions/:id           MesPhoenix.ActionController :show
+     action_path  POST    /actions               MesPhoenix.ActionController :create
+     action_path  PATCH   /actions/:id           MesPhoenix.ActionController :update
+                  PUT     /actions/:id           MesPhoenix.ActionController :update
+     action_path  DELETE  /actions/:id           MesPhoenix.ActionController :delete
+     module_path  GET     /modules               MesPhoenix.ModuleController :index
+     module_path  GET     /modules/:id/edit      MesPhoenix.ModuleController :edit
+     module_path  GET     /modules/new           MesPhoenix.ModuleController :new
+     module_path  GET     /modules/:id           MesPhoenix.ModuleController :show
+     module_path  POST    /modules               MesPhoenix.ModuleController :create
+     module_path  PATCH   /modules/:id           MesPhoenix.ModuleController :update
+                  PUT     /modules/:id           MesPhoenix.ModuleController :update
+     module_path  DELETE  /modules/:id           MesPhoenix.ModuleController :delete
+   redirect_path  GET     /*path                 MesPhoenix.RedirectController :redirector_to_home
+

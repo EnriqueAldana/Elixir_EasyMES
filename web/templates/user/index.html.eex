@@ -2,7 +2,6 @@
 <table class="table">
 <td>
 <%= link "New user", to: user_path(@conn, :new) %>
-
 </td>
 <td>
   <%= link "Back home", to: page_path(@conn, :home) %>

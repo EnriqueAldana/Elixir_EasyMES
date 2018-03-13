@@ -1,6 +1,7 @@
 defmodule MesPhoenix.User do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 #  import Comeonin.Bcrypt, only: [hashpwsalt: 1]
 
 # alias MesPhoenix.Console
@@ -50,10 +51,7 @@ defmodule MesPhoenix.User do
     field :country , :string
     field :region , :string
     #It does not need an MesPhoenix.UserRoles model.
-    # many_to_many :roles, MesPhoenix.Role, join_through: "users_roles",join_keys: [child_id: :user_uuid, parent_id: :id]
-    # many_to_many :roles, MesPhoenix.Role, join_through: MesPhoenix.User_Role, on_delete: :delete_all, on_replace: :delete,join_keys: [child_id: :user_uuid, parent_id: :id]
-
-
+    many_to_many :roles, MesPhoenix.Role, join_through: "users_roles", on_replace: :delete
   end
 @required_fields ~w(user_name first_name last_name email password password_confirmation)
 # Just the optional fields could be updated
@@ -68,7 +66,10 @@ def changeset(struct, params \\ %{}) do
     #  message: "There is another User with the same name and email")
 
 end
-
+def changeset_user_role_create(struct, role_list \\ %{}) do
+  struct
+    |> Ecto.Changeset.put_assoc(:roles, role_list)
+end
 
 def registration_changeset(user, params \\ :empty) do
 user
@@ -82,12 +83,7 @@ user
       name: :users_email_index,
       message: "There is another User with the same email. Try with other email")
 
-    #|> unique_constraint([:user_name, :email],
-    #  name: :users_user_name_email_index,
-    #  message: ["There is another User with the same User name", "There is another User with the same email"] )
-
-    # |> put_change(:encrypted_password, Comeonin.Bcrypt.hashpwsalt(params[:password]))
-end
+  end
 
   defp validate_password_confirmation(changeset) do
     case get_change(changeset, :password_confirmation) do
@@ -118,6 +114,27 @@ end
         changeset
     end
   end
+  @doc """
+  Get all roles assigned to the user id
+  Example
 
+        get_user_role_query(User,59)
+  """
+  defp get_user_role_query(query,id) do
+    from u in query,
+    join:  ur in assoc(u, :roles),
+    where: u.id == ^id,
+    select: %{user_id: u.id, user_name: u.user_name,role_id: ur.id}
+  end
+
+
+  def get_all_users(query) do
+    from u in query,
+    select: {u.id, u.user_name}
+  end
+  def get_user_by_id(query,id) do
+    from u in query,
+    where: u.id== ^id
+  end
 
 end

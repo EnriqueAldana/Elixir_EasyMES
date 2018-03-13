@@ -25,4 +25,20 @@ defmodule MesPhoenix.Utility do
   def search_into_list_of_key_word([], elem4find, msg) do
       msg
   end
+
+  def list_to_string_separated_by_space([], accumulator) do
+          accumulator
+  end
+  @doc """
+    This function receives a list of tuples
+    Example
+    list = [{"User_delete"}, {"User_edit"}]
+    list_to_string_separated_by_space(list , "")
+    return
+    "User_delete User_edit"
+  """
+  def list_to_string_separated_by_space([head | tail], accumulator) do
+          {value} = head
+          list_to_string_separated_by_space(tail, Enum.join([value, accumulator], " ") )
+  end
 end

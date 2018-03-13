@@ -8,8 +8,8 @@ defmodule MesPhoenix.Repo.Migrations.CreateAction do
 
       timestamps()
     end
-    create unique_index(:actions,[:action_name])
-    
+    create_if_not_exists unique_index(:actions,[:action_name])
+
   end
   def down do
     drop table(:actions)

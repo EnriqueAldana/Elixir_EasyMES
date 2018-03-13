@@ -8,6 +8,7 @@ defmodule MesPhoenix.Role do
     field :key_role, :string
     field :description, :string
     many_to_many :rights, MesPhoenix.Right, join_through: "roles_rights", on_replace: :delete
+    many_to_many :users, MesPhoenix.User, join_through: "users_roles", on_replace: :delete
     timestamps()
   end
 
@@ -30,9 +31,14 @@ defmodule MesPhoenix.Role do
   def  changeset_delete(struct, params \\ %{}) do
       struct
       |> cast(params, [:key_role, :description])
-      |> foreign_key_constraint(:id,
+      |> foreign_key_constraint(:error_roles_rights_role_id_fkey,
         name: :roles_rights_role_id_fkey,
         message: "This role is relationed with a right. Try to undo role and right relationship first")
+      |> foreign_key_constraint(:error_users_roles_role_id_fkey,
+        name: :users_roles_role_id_fkey,
+        message: "This role is relationed with a user. Try to undo role and user relationship first")
+
+
   end
   def alphabetical(query) do
     from c in query, order_by: c.key_role
@@ -41,5 +47,19 @@ defmodule MesPhoenix.Role do
   def names_and_ids(query) do
     from c in query, select: {c.key_role, c.id}
   end
+  def by_ids(query,ids) when is_nil(ids) or byte_size(ids) == 0 do
+    query
+  end
+  def by_ids(query,ids) do
+    from role in query,
+    where: role.id in ^ids
+  end
 
+  def get_rights_by_user(query,id) do
+    from r in query,
+    join: u in assoc(r, :users),
+    join: ri in assoc(r, :rights),
+    where: u.id == ^id,
+    select: {ri.right_string} 
+  end
 end

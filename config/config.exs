@@ -30,18 +30,18 @@ import_config "#{Mix.env}.exs"
 # https://hexdocs.pm/ecto_mnesia/readme.html
 # ECTO - Mnesia Configurations
 # JEAS
-config :ecto_mnesia,
-  host: {:system, :atom, "MNESIA_HOST", Kernel.node()},
-  storage_type: {:system, :atom, "MNESIA_STORAGE_TYPE", :disc_copies}
+#config :ecto_mnesia,
+#  host: {:system, :atom, "MNESIA_HOST", Kernel.node()},
+#  storage_type: {:system, :atom, "MNESIA_STORAGE_TYPE", :disc_copies}
 # Optionally set custom Mnesia data dir (don't forget to create it):
 # JEAS
-config :mnesia,
-  dir: 'priv/data/mnesia' # Make sure this directory exists
+#config :mnesia,
+#  dir: 'priv/data/mnesia' # Make sure this directory exists
 
 # ECTO Configuration Database
 # Use EctoMnesia.Adapter as your Ecto.Repo adapter:
 # JEAS
-# config :mes_phoenix, Mes_phoenix.Repo,
+ #config :mes_phoenix, Mes_phoenix.Repo,
 #  adapter: EctoMnesia.Adapter,
 #  database: "mes_phoenix_DB",
 #  hostname: "localhost"

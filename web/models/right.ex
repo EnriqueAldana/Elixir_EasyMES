@@ -9,6 +9,8 @@ defmodule MesPhoenix.Right do
     field :module_name, :string
     field :action_name, :string
     field :right_string, :string
+    field :module_id, :integer
+    field :action_id, :integer
     many_to_many :roles, MesPhoenix.Role, join_through: "roles_rights"
 
     timestamps()
@@ -19,18 +21,24 @@ defmodule MesPhoenix.Right do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:module_name, :action_name, :right_string])
+    |> cast(params, [:module_name,:module_id, :action_name,:action_id ,:right_string])
   end
   def registration_changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:module_name, :action_name, :right_string])
+    |> cast(params, [:module_id,:module_name, :action_id,:action_name, :right_string])
     |> join_fields
     |> validate_required([:module_name, :action_name, :right_string])
     |> unique_constraint(:right_string_repeated,
       name: :rights_right_string_index,
       message: "There is another Right with the same Module name and Action name ")
-
-    #put_change(changeset,:right_string , :module_name <> "_" <> :action_name )
+  end
+  def  changeset_delete(struct, params \\ %{}) do
+      struct
+      |> cast(params, [:id])
+      |> validate_required([:id])
+      |> foreign_key_constraint(:id,
+        name: :roles_rights_right_id_fkey,
+        message: "This right is used with a role. Try to undo right and role relationship first")
   end
   def join_fields(struct) do
      mod_name=  get_field(struct, :module_name)
